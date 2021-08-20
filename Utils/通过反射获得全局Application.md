@@ -7,9 +7,13 @@ object AppGlobals {
     fun get(): Application? {
         if (application == null) {
             try {
-                application = Class.forName("android.app.ActivtiyThread")
-                    .getMethod("currentApplication")
-                    .invoke(null) as Application
+                val activityThread = 
+                Class.forName("android.app.ActivityThread")
+                val currentApplication = 			         activityThread.getDeclaredMethod("currentApplication")              
+                val currentActivityThread =
+                    activityThread.getDeclaredMethod("currentActivityThread")
+                val current = currentActivityThread.invoke(null as Any?)
+                application = currentApplication.invoke(current) as Application?
             } catch (ex: Exception) {
                 ex.printStackTrace()
             }
