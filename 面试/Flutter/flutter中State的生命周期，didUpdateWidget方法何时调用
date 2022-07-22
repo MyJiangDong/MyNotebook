@@ -1,0 +1,22 @@
+#### didUpdateWidget方法何时调用
+
+**只要在父widget中调用setState，子widget的didUpdateWidget就一定会被调用**，不管父widget传递给子widget[构造方法](https://so.csdn.net/so/search?q=构造方法&spm=1001.2101.3001.7020)的参数有没有改变。
+
+只要didUpdateWidget被调用，接来下build方法就一定会被调用
+
+子widget首次被加载时的[生命周期](https://so.csdn.net/so/search?q=生命周期&spm=1001.2101.3001.7020)：
+
+```dart
+initState -> build
+```
+
+子widget首次被加载后，如果在父widget中调用[setState](https://so.csdn.net/so/search?q=setState&spm=1001.2101.3001.7020)，子widget的生命周期：
+
+```dart
+didUpdateWidget -> build
+```
+
+#### flutter中state的生命周期
+
+![img](assets/v2-e2ae217964229f9c7b99c5855ed6d3ff_720w.jpg)
+
